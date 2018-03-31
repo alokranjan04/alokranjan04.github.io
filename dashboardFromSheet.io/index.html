@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script  src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+        <link href="style.css" rel="stylesheet" tyle="text/css">
+        <link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.bootstrap.min.css">
+    
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        
+      <div class="navbar">
+          <a href="#home">Home</a>
+          <a  href="https://docs.google.com/spreadsheets/d/1jorzZXpSORH4tUkYK_HtW1cMNWYhGiOAMxcqUEPISe8/edit?usp=sharing" target="_blank">Default Sheet</a>
+          <div class="dropdown">
+            <button class="dropbtn" id="dropDownButton">Dropdown 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div> 
+        </div>
+     
+        <div id="sheetUrl" style="margin-bottom: -2%;" >Post your sheet URL: <input type="input" value=""/><button id="sheetUrlGiven">Create Dashboard</button></div>
+        <div id="showData" style="width:80%;height:450px;margin-left:10%"></div>
+        
+       
+      
+        <div style="margin-bottom: -2%;" >
+        <select id="D1">
+        </select>
+        </div>
+         <div id="graph" style="margin-top:5%"></div> 
+        <script src="drawGraph.js"></script>
+        <script src="createTable.js"></script>
+        <script src="app.js"></script>
+    
+    </body>
+
+
+
+
+</html>
