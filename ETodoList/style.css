@@ -1,0 +1,85 @@
+body {
+    background: #edf0f1;
+    margin:auto;
+    max-width: 45em;
+}
+
+header {
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(44,62,80,0.15);
+    background: #22698b; 
+    border-radius: 17px;
+}
+
+header input {
+    color: #fff;
+    text-indent: 1.5rem;
+    padding: 0 60px 0 0;
+    background-color: #cde2e4eb;
+    border-radius: 5px 25px 25px 5px;
+    border:0;
+    height: 3rem;
+    width: 99%;
+    border-radius: 22px;
+}
+header button{
+    border-radius: 25px;
+    background: #fff;
+    border: 0;
+    height: 4em;
+    width: 4em;
+    cursor: pointer;
+    margin: -4em;
+}
+
+.buttons {
+    float: right;
+}
+
+.buttons button {
+    cursor: pointer;
+    border: .15rem solid transparent;
+    vertical-align: middle;
+    width: 2rem;
+    height: 2rem;
+    transition: fill .2s ease;
+        
+}
+
+.buttons button.complete.hover{
+    background: #fff;    
+}
+.buttons button.complete{
+    border: 0.1rem solid #228b22;
+}
+.buttons button.remove{
+     background: #c0cecb;  
+}
+.buttons button.remove:hover{
+     background: #e85656;  
+}
+.todo li {
+    color: #333;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(44,62,80,0.1);
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    word-wrap: break-word;
+}
+#todo:empty:after {
+    content:"Nothing to do"
+}
+#completed li{
+    background: #edf0f1;
+    opacity: .5;
+}
+
+#completed:empty:after{
+    content: "You can complete or add new tasks";
+}
+#completed:after, #todo:after{
+    text-align: center;
+    color: silver;
+    display: block;
+}
