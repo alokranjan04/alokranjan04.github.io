@@ -1,0 +1,59 @@
+
+<html ng-app="app">
+  <head>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-touch.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/ui-grid.js"></script>
+    <script src="lib/jquery-1.12.4.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+    <link rel="stylesheet" href="lib/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="css/ui-grid.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+      <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  </head>
+  <body style="background-color:#fafafa;">
+ 
+<H1><img src="/images/DoubtrixNew.png" style="width: 14%;margin-top: -4%;"></H1>
+  
+<p>Date: <input type="text"  id="datepicker"></p>
+
+   
+    <div ng-controller="MainCtrl">
+        <p>Select account 
+        <select name="singleSelect" ng-model="selectedAccount" ng-change="selectAccount(this)">
+          <option value="URD">URD</option>
+          <option value="LMT">LMT</option>
+        </select><br/>
+        </p>
+        <div id="grid1" ui-grid="gridOptions" ui-grid-selection ui-grid-cellNav class="grid"></div>
+    </div> 
+      
+   
+      
+          <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog" style="width:55%;height:104%">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel" style="text-align: center;" >Agent's details </h4>
+          </div>
+          <div class="modal-body">
+            <div id="showDetails"></div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+<!--
+
+
+https://docs.google.com/forms/d/e/1yjhp0FsmN7pr-UCY4mmCnuzjhCRjJxtBuiGThlqbS2w/formResponse
+
+https://docs.google.com/forms/d/e/1FAIpQLSd95XlxSa0GMiYzGlKOZRZpyA5LLsZPdLiL0Ec2Ut46Ul7LLw/formResponse-->
