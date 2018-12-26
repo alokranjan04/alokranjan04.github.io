@@ -10,7 +10,7 @@ app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($sco
     
   };
 
-    var accounts = ['URD','LMT']
+    var accounts = ['URD','LMT','WPMS']
     $scope.selectedAccount = 'URD';
     
     $( "#datepicker" ).datepicker();
