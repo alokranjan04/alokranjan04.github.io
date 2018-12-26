@@ -127,7 +127,7 @@ $scope.selectAccount = function(val){
     function changeValue(todateEnDate, LOB){
        var accountIndex =  accounts.indexOf($scope.selectedAccount)+1;
         if($scope.gridOptions.data)   $scope.gridOptions.data.length=0;
-         url = (LOB == 'WPMS')? 'https://spreadsheets.google.com/feeds/list/1XIj6wPCccPhrEonlRpODWpWJusrePYyX1awAxPscWF4/'+accountIndex+'/public/values?alt=json':'https://spreadsheets.google.com/feeds/list/1IWTnHZbVvqslTnpb_B2OTjhEvRUG2E2wVIi8iYxg388/1/public/values?alt=json';
+         url = (LOB != 'WPMS')? 'https://spreadsheets.google.com/feeds/list/1XIj6wPCccPhrEonlRpODWpWJusrePYyX1awAxPscWF4/'+accountIndex+'/public/values?alt=json':'https://spreadsheets.google.com/feeds/list/1IWTnHZbVvqslTnpb_B2OTjhEvRUG2E2wVIi8iYxg388/1/public/values?alt=json';
      $http.get(url)
   .success(function(data) {
         data = data.feed.entry;
