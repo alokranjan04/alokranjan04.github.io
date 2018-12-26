@@ -94,7 +94,7 @@ app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($sco
 
  $scope.msg = {};
 
-
+ var url ='';
 var timeDiffInSec = function(d1,d2) {
     var date1 = new Date(d1);
     var date2 = new Date(d2);    
@@ -120,13 +120,15 @@ function convertTime(counter){
 $scope.selectAccount = function(val){
     
     var selectedDate = ($('#datepicker').val())?$('#datepicker').val(): new Date().toLocaleDateString('en');
-    changeValue(selectedDate);
+    changeValue(selectedDate, val.selectedAccount);
+    
 }
     
-    function changeValue(todateEnDate){
+    function changeValue(todateEnDate, LOB){
        var accountIndex =  accounts.indexOf($scope.selectedAccount)+1;
         if($scope.gridOptions.data)   $scope.gridOptions.data.length=0;
-     $http.get('https://spreadsheets.google.com/feeds/list/1XIj6wPCccPhrEonlRpODWpWJusrePYyX1awAxPscWF4/'+accountIndex+'/public/values?alt=json')
+         url = (LOB == 'WPMS')? 'https://spreadsheets.google.com/feeds/list/1XIj6wPCccPhrEonlRpODWpWJusrePYyX1awAxPscWF4/'+accountIndex+'/public/values?alt=json':'https://spreadsheets.google.com/feeds/list/1IWTnHZbVvqslTnpb_B2OTjhEvRUG2E2wVIi8iYxg388/1/public/values?alt=json';
+     $http.get(url)
   .success(function(data) {
         data = data.feed.entry;
          
