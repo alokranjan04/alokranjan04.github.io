@@ -1,0 +1,428 @@
+<html>
+    <head></head>
+<body>
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="4" flood-color="#00000040"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">
+    Chat with PDF - RAG Architecture
+  </text>
+  
+  <!-- User Interface Layer -->
+  <rect x="50" y="60" width="200" height="120" rx="10" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <text x="150" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    User Interface
+  </text>
+  <text x="150" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Streamlit App
+  </text>
+  <text x="150" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • PDF Upload
+  </text>
+  <text x="150" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chat Interface
+  </text>
+  <text x="150" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Response Display
+  </text>
+  
+  <!-- Document Processing Layer -->
+  <rect x="300" y="60" width="250" height="120" rx="10" fill="url(#greenGradient)" filter="url(#shadow)"/>
+  <text x="425" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Document Processing
+  </text>
+  <text x="425" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    LangChain Document Loaders
+  </text>
+  <text x="425" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • PyPDFLoader
+  </text>
+  <text x="425" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Text Extraction
+  </text>
+  <text x="425" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Metadata Handling
+  </text>
+  
+  <!-- Text Chunking -->
+  <rect x="300" y="200" width="250" height="100" rx="10" fill="url(#greenGradient)" filter="url(#shadow)"/>
+  <text x="425" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Text Chunking
+  </text>
+  <text x="425" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    RecursiveCharacterTextSplitter
+  </text>
+  <text x="425" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chunk Size: 1000
+  </text>
+  <text x="425" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Overlap: 200
+  </text>
+  
+  <!-- Embedding Layer -->
+  <rect x="600" y="60" width="200" height="120" rx="10" fill="url(#purpleGradient)" filter="url(#shadow)"/>
+  <text x="700" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Text Embeddings
+  </text>
+  <text x="700" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    OpenAI Embeddings
+  </text>
+  <text x="700" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • text-embedding-ada-002
+  </text>
+  <text x="700" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • 1536 dimensions
+  </text>
+  <text x="700" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Semantic similarity
+  </text>
+  
+  <!-- Vector Store -->
+  <rect x="600" y="200" width="200" height="120" rx="10" fill="url(#purpleGradient)" filter="url(#shadow)"/>
+  <text x="700" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Vector Store
+  </text>
+  <text x="700" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    FAISS / Chroma
+  </text>
+  <text x="700" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Vector indexing
+  </text>
+  <text x="700" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Similarity search
+  </text>
+  <text x="700" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Persistent storage
+  </text>
+  
+  <!-- Query Processing -->
+  <rect x="850" y="60" width="200" height="120" rx="10" fill="url(#orangeGradient)" filter="url(#shadow)"/>
+  <text x="950" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Query Processing
+  </text>
+  <text x="950" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    User Question
+  </text>
+  <text x="950" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Query embedding
+  </text>
+  <text x="950" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Retrieval (top-k)
+  </text>
+  <text x="950" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context preparation
+  </text>
+  
+  <!-- LLM Layer -->
+  <rect x="850" y="200" width="200" height="120" rx="10" fill="url(#orangeGradient)" filter="url(#shadow)"/>
+  <text x="950" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Language Model
+  </text>
+  <text x="950" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    GPT-3.5/4 or Local LLM
+  </text>
+  <text x="950" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context + Question
+  </text>
+  <text x="950" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Answer generation
+  </text>
+  <text x="950" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Conversational memory
+  </text>
+  
+  <!-- Memory/Chat History -->
+  <rect x="300" y="340" width="250" height="100" rx="10" fill="#64748b" filter="url(#shadow)"/>
+  <text x="425" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Conversation Memory
+  </text>
+  <text x="425" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    ConversationBufferMemory
+  </text>
+  <text x="425" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chat history
+  </text>
+  <text x="425" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context continuity
+  </text>
+  
+  <!-- Retrieval Chain -->
+  <rect x="600" y="340" width="200" height="100" rx="10" fill="#64748b" filter="url(#shadow)"/>
+  <text x="700" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Retrieval Chain
+  </text>
+  <text x="700" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    ConversationalRetrievalChain
+  </text>
+  <text x="700" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Combines retrieval + chat
+  </text>
+  <text x="700" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Handles follow-ups
+  </text>
+  
+  <!-- Data Flow Arrows -->
+  <!-- UI to Document Processing -->
+  <path d="M 250 120 L 300 120" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Document Processing to Chunking -->
+  <path d="M 425 180 L 425 200" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Chunking to Embeddings -->
+  <path d="M 550 250 L 600 120" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Embeddings to Vector Store -->
+  <path d="M 700 180 L 700 200" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Query Processing to Vector Store -->
+  <path d="M 850 140 L 800 230" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Vector Store to LLM -->
+  <path d="M 800 260 L 850 260" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- LLM back to UI -->
+  <path d="M 850 240 Q 500 480 150 180" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Memory connections -->
+  <path d="M 425 340 Q 500 300 700 340" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 800 390 L 850 280" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+  
+  <!-- Process Flow Labels -->
+  <text x="275" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Upload PDF
+  </text>
+  <text x="440" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Split
+  </text>
+  <text x="575" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Embed
+  </text>
+  <text x="715" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Store
+  </text>
+  <text x="825" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Retrieve
+  </text>
+  <text x="825" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Generate
+  </text>
+  <text x="500" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">
+    Response
+  </text>
+  
+  <!-- Technology Stack -->
+  <rect x="50" y="500" width="300" height="250" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="200" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b">
+    Technology Stack
+  </text>
+  
+  <!-- Frontend -->
+  <rect x="70" y="540" width="120" height="60" rx="5" fill="#3b82f6" opacity="0.1"/>
+  <text x="130" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">
+    Frontend
+  </text>
+  <text x="130" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1e40af">
+    • Streamlit
+  </text>
+  <text x="130" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1e40af">
+    • Python
+  </text>
+  
+  <!-- Backend -->
+  <rect x="210" y="540" width="120" height="60" rx="5" fill="#10b981" opacity="0.1"/>
+  <text x="270" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">
+    Backend
+  </text>
+  <text x="270" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">
+    • LangChain
+  </text>
+  <text x="270" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">
+    • Python
+  </text>
+  
+  <!-- Vector DB -->
+  <rect x="70" y="620" width="120" height="60" rx="5" fill="#8b5cf6" opacity="0.1"/>
+  <text x="130" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7c3aed">
+    Vector DB
+  </text>
+  <text x="130" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7c3aed">
+    • FAISS
+  </text>
+  <text x="130" y="670" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7c3aed">
+    • Chroma
+  </text>
+  
+  <!-- LLM -->
+  <rect x="210" y="620" width="120" height="60" rx="5" fill="#f59e0b" opacity="0.1"/>
+  <text x="270" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#d97706">
+    LLM
+  </text>
+  <text x="270" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#d97706">
+    • OpenAI GPT
+  </text>
+  <text x="270" y="670" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#d97706">
+    • Local Models
+  </text>
+  
+  <!-- Use Cases -->
+  <rect x="400" y="500" width="300" height="250" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="550" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b">
+    Use Cases
+  </text>
+  
+  <rect x="420" y="540" width="80" height="80" rx="5" fill="#fef3c7"/>
+  <text x="460" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400e">
+    Legal Docs
+  </text>
+  <text x="460" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Contracts
+  </text>
+  <text x="460" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Agreements
+  </text>
+  <text x="460" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Compliance
+  </text>
+  
+  <rect x="520" y="540" width="80" height="80" rx="5" fill="#dbeafe"/>
+  <text x="560" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">
+    Research
+  </text>
+  <text x="560" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1e40af">
+    • Papers
+  </text>
+  <text x="560" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1e40af">
+    • Reports
+  </text>
+  <text x="560" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1e40af">
+    • Literature
+  </text>
+  
+  <rect x="620" y="540" width="80" height="80" rx="5" fill="#d1fae5"/>
+  <text x="660" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#065f46">
+    Business
+  </text>
+  <text x="660" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#065f46">
+    • Invoices
+  </text>
+  <text x="660" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#065f46">
+    • Manuals
+  </text>
+  <text x="660" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#065f46">
+    • Policies
+  </text>
+  
+  <!-- Key Features -->
+  <rect x="420" y="640" width="260" height="80" rx="5" fill="#f3e8ff"/>
+  <text x="550" y="660" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#6b21a8">
+    Key Features
+  </text>
+  <text x="550" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6b21a8">
+    • Semantic search across documents
+  </text>
+  <text x="550" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6b21a8">
+    • Conversational context retention
+  </text>
+  <text x="550" y="710" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6b21a8">
+    • Multi-document support
+  </text>
+  
+  <!-- Performance Metrics -->
+  <rect x="750" y="500" width="400" height="250" rx="10" fill="#fafafa" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="950" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1f2937">
+    Implementation Considerations
+  </text>
+  
+  <!-- Chunking Strategy -->
+  <rect x="770" y="540" width="170" height="80" rx="5" fill="#ecfdf5"/>
+  <text x="855" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#047857">
+    Chunking Strategy
+  </text>
+  <text x="855" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#047857">
+    • Chunk size: 1000 tokens
+  </text>
+  <text x="855" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#047857">
+    • Overlap: 200 tokens
+  </text>
+  <text x="855" y="605" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#047857">
+    • Preserve context
+  </text>
+  
+  <!-- Retrieval Config -->
+  <rect x="960" y="540" width="170" height="80" rx="5" fill="#fef2f2"/>
+  <text x="1045" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#991b1b">
+    Retrieval Config
+  </text>
+  <text x="1045" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#991b1b">
+    • Top-k: 3-5 chunks
+  </text>
+  <text x="1045" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#991b1b">
+    • Similarity threshold
+  </text>
+  <text x="1045" y="605" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#991b1b">
+    • MMR for diversity
+  </text>
+  
+  <!-- Optimization -->
+  <rect x="770" y="640" width="170" height="80" rx="5" fill="#fffbeb"/>
+  <text x="855" y="660" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400e">
+    Optimization
+  </text>
+  <text x="855" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Caching embeddings
+  </text>
+  <text x="855" y="690" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Batch processing
+  </text>
+  <text x="855" y="705" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#92400e">
+    • Memory management
+  </text>
+  
+  <!-- Scalability -->
+  <rect x="960" y="640" width="170" height="80" rx="5" fill="#f0f9ff"/>
+  <text x="1045" y="660" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0c4a6e">
+    Scalability
+  </text>
+  <text x="1045" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0c4a6e">
+    • Multiple PDFs
+  </text>
+  <text x="1045" y="690" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0c4a6e">
+    • Session management
+  </text>
+  <text x="1045" y="705" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0c4a6e">
+    • Cloud deployment
+  </text>
+</svg>
+</body>
+</html>

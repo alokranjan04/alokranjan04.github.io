@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Solving Business Problems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F8;
+        }
+        /* Base chart-container styles for responsiveness */
+        .chart-container {
+            position: relative;
+            margin: auto; /* Center horizontally */
+            width: 100%; /* Take full width of parent column */
+            height: 280px; /* Base height for mobile */
+            max-width: 450px; /* Max width for smaller charts on larger screens */
+        }
+        /* Adjust chart-container height for medium and larger screens */
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px; /* Increased height for tablets/desktops */
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px; /* Further increased height for larger desktops */
+            }
+        }
+
+        /* Color Palette Classes */
+        .text-energetic-dark-blue { color: #004369; }
+        .text-energetic-teal { color: #01949A; }
+        .text-energetic-red { color: #DB1F48; }
+        .bg-energetic-dark-blue { background-color: #004369; }
+        .bg-energetic-teal { background-color: #01949A; }
+        .bg-energetic-red { background-color: #DB1F48; }
+        .bg-energetic-beige { background-color: #E5DDC8; }
+        .border-energetic-dark-blue { border-color: #004369; }
+
+        /* Feature item and Flow diagram styling */
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .feature-icon {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+            color: #01949A;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+        .flow-node {
+            background-color: #E5DDC8;
+            border: 2px solid #004369;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #004369;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #DB1F48;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        /* Print-specific styles to improve PDF export */
+        @media print {
+            body {
+                background-color: #FFFFFF;
+                color: #000000;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0.5in;
+            }
+            header, footer {
+                page-break-after: avoid;
+            }
+            section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                margin-bottom: 2.5rem !important; /* Increased margin-bottom for sections in print */
+                margin-top: 2.5rem !important; /* Added margin-top for sections in print */
+            }
+            .chart-container {
+                height: 300px;
+                max-width: 100%;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .flow-node, .concept-box {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .flow-node-group {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                display: flex;
+                flex-direction: column; /* Stack vertically for print */
+                align-items: center;
+                width: 100%;
+            }
+            .flow-node-group > .flex { /* Specific targeting for main branching flex containers */
+                flex-direction: column !important; /* Force stacking of sub-branches */
+                align-items: center !important;
+                width: 100% !important;
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+                gap: 0.5rem !important; /* Add gap for vertical spacing in stacked columns */
+            }
+            .flow-node-group .flex.space-x-4 {
+                 flex-direction: column !important;
+                 align-items: center !important;
+                 gap: 0.5rem !important;
+                 width: 100% !important;
+            }
+             .flow-node-group .flex.space-x-2 {
+                 flex-direction: column !important;
+                 align-items: center !important;
+                 gap: 0.5rem !important;
+                 width: 100% !important;
+            }
+
+
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+            p, ul, ol, li {
+                orphans: 3;
+                widows: 3;
+            }
+            .bg-white {
+                background-color: #ffffff !important;
+            }
+            .shadow-lg {
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-energetic-dark-blue mb-4">Machine Learning Solving Business Problems</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">Explore the core strengths, technical characteristics, and typical business applications of key machine learning models, understanding when and where each shines in a business context.</p>
+        </header>
+
+        <main>
+
+            <!-- Logistic Regression -->
+            <section id="logistic-regression" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">Logistic Regression</h2>
+                    <p class="mb-4">Simple yet powerful, Logistic Regression is the go-to for binary classification tasks, modeling the probability of a binary outcome through a sigmoid function.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Binary Classification:</span> Predicts one of two discrete outcomes (e.g., Yes/No, True/False). Ideal for straightforward decision boundaries.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Highly Interpretable:</span> The impact of each input feature on the outcome probability is easily quantifiable and understandable, crucial for compliance and clear decision-making.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Resource-Light:</span> Requires minimal computational resources and training time, making it efficient for small to medium-sized datasets.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Probabilistic Output:</span> Provides a probability score (between 0 and 1) instead of just a class, allowing for flexible thresholding.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Predictive Customer Churn:** Identifying customers most likely to cancel subscriptions, enabling proactive retention strategies.</li>
+                        <li>**Email Spam Classification:** Distinguishing legitimate emails from unwanted spam, improving user experience and security.</li>
+                        <li>**Credit Risk Analysis:** Assessing the probability of loan default for applicants, informing lending decisions.</li>
+                    </ul>
+                </div>
+                <div class="chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Interpretability vs. Accuracy Balance</h3>
+                    <canvas id="logisticRadarChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">Illustrates Logistic Regression's strong balance in interpretability and its efficiency for binary classification tasks, even if not always the most accurate for complex scenarios.</p>
+                </div>
+            </section>
+
+            <!-- Random Forest -->
+            <section id="random-forest" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div class="order-2 md:order-1 chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Ensemble Power: Accuracy Boost</h3>
+                    <canvas id="randomForestBarChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">Demonstrates the collective strength of an ensemble (Random Forest) significantly outperforming a single decision tree by reducing variance and bias.</p>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">Random Forest</h2>
+                    <p class="mb-4">An ensemble learning method, Random Forest builds multiple decision trees during training and merges their predictions (e.g., by averaging or voting) to produce more accurate and stable results.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Robust Against Overfitting:</span> By averaging individual tree predictions, it significantly reduces the risk of overfitting to the training data, leading to better generalization.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Handles Diverse Data:</span> Manages both missing values and complex non-linear relationships well, requiring less feature engineering.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Feature Importance Metrics:</span> Provides a measure of how much each feature contributes to the model's predictive power, offering valuable insights for business strategy.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Versatile:</span> Can be used for both classification (predicting categories) and regression (predicting numerical values).</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Fraud Detection:** Identifying unusual transaction patterns that indicate fraudulent activity in banking or e-commerce.</li>
+                        <li>**Predicting Customer Behavior:** Forecasting customer lifetime value, product interest, or next-best-action recommendations.</li>
+                        <li>**Sales Forecasting:** Providing accurate predictions of future sales volumes by considering multiple factors like seasonality, promotions, and economic indicators.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- XGBoost -->
+            <section id="xgboost" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">XGBoost</h2>
+                    <p class="mb-4">Extreme Gradient Boosting is a highly optimized and efficient open-source implementation of the gradient boosting algorithm, known for its speed and top performance on tabular data.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">High Predictive Accuracy:</span> Often considered a state-of-the-art model for structured datasets, frequently winning machine learning competitions due to its robust optimization techniques.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Optimized for Tabular Data:</span> Works exceptionally well with datasets common in business (e.g., spreadsheets, databases), handling a mix of numerical and categorical features.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Built-in Regularization:</span> Includes L1 and L2 regularization to prevent overfitting, enhancing its ability to generalize to new, unseen data.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Handles Sparse Data:</span> Designed to efficiently manage missing values or sparsely populated features.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Loan Default Prediction:** Accurately assessing the risk of borrowers defaulting on loans, a critical application in financial services.</li>
+                        <li>**Marketing Campaign Effectiveness:** Optimizing ad spend and targeting by predicting customer response rates to various marketing initiatives.</li>
+                        <li>**Supply Chain Optimization:** Forecasting demand, optimizing inventory levels, and identifying potential bottlenecks or disruptions in complex supply chains.</li>
+                    </ul>
+                </div>
+                <div class="chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Performance Benchmark (Accuracy %)</h3>
+                    <canvas id="xgboostLineChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">XGBoost's continuous improvement over simpler models highlights its superiority in achieving higher predictive accuracy across various datasets.</p>
+                </div>
+            </section>
+
+            <!-- K-Means Clustering -->
+            <section id="kmeans" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div class="order-2 md:order-1 chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Customer Segments Example</h3>
+                    <canvas id="kmeansScatterChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">Visualizes K-Means iteratively grouping data points (e.g., customers) into distinct clusters, where each color represents a unique segment based on similarity.</p>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">K-Means Clustering</h2>
+                    <p class="mb-4">An unsupervised learning algorithm, K-Means groups unlabeled data points into 'k' distinct clusters, where 'k' is specified beforehand. It works by iteratively minimizing the distance between data points and their cluster centroids.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Effective for Segmentation:</span> Excellent for dividing a population (e.g., customers, products) into homogeneous subgroups based on their characteristics.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Easy to Understand & Implement:</span> Its core logic is intuitive, making it accessible for quick deployment and explanation.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Pre-Defined Clusters (K):</span> Works best when the number of desired clusters (K) is known or can be estimated through methods like the "elbow method."</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Iterative Optimization:</span> Refines clusters by moving centroids and re-assigning points until convergence.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Customer Segmentation:** Tailoring marketing campaigns, product recommendations, or service tiers to specific customer groups.</li>
+                        <li>**Market Basket Analysis:** Discovering products frequently purchased together to optimize store layouts, cross-selling, and bundling strategies.</li>
+                        <li>**Product Categorization:** Automatically organizing large product catalogs into logical categories, improving search and navigation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Decision Tree -->
+            <section id="decision-tree" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">Decision Tree</h2>
+                    <p class="mb-4">A flowchart-like structure, a Decision Tree makes predictions by asking a series of questions about the data's features, splitting the dataset into smaller, purer subsets at each node.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">High Interpretability & Visualization:</span> Its tree structure is inherently visual and easy to follow, making the decision-making logic transparent and explainable to non-technical stakeholders.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Handles Mixed Data Types:</span> Can effectively process both categorical (e.g., product type) and numerical (e.g., price) data without special encoding.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Minimal Data Preprocessing:</span> Less sensitive to outliers and does not require feature scaling or normalization.</li>
+                        <li class="feature-item"><span class="feature-icon">⚠</span> <span class="font-semibold text-energetic-red">Prone to Overfitting:</span> Can easily overfit complex data if not properly pruned or ensemble methods (like Random Forest) are not used.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Loan Approval Systems:** Automating credit decisions based on applicant criteria, providing transparent reasons for approval or rejection.</li>
+                        <li>**Employee Performance Prediction:** Identifying factors that contribute to high or low employee performance, guiding training and development initiatives.</li>
+                        <li>**Process Optimization in Manufacturing:** Mapping out production workflows and identifying decision points that lead to efficiency gains or bottlenecks.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-center justify-center h-full p-4 flow-node-group">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-4">Conceptual Decision Process Flow</h3>
+                    <div class="flow-node">Is Customer Age > 30?</div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full justify-center">
+                        <div class="flex flex-col items-center">
+                            <div class="flow-node">No</div>
+                            <div class="flow-arrow text-base">⬇️</div>
+                            <div class="flow-node">Is Purchase Freq. High?</div>
+                            <div class="flow-arrow text-base">⬇️</div>
+                            <div class="flex space-x-2">
+                                <div class="flex flex-col items-center">
+                                    <div class="flow-node bg-energetic-red/20 border-energetic-red text-energetic-red">Target <br>Retention</div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="flow-node bg-energetic-teal/20 border-energetic-teal text-energetic-teal">Target <br>Engagement</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="flow-node">Yes</div>
+                            <div class="flow-arrow text-base">⬇️</div>
+                            <div class="flow-node">Is Avg. Order Value High?</div>
+                            <div class="flow-arrow text-base">⬇️</div>
+                             <div class="flex space-x-2">
+                                <div class="flex flex-col items-center">
+                                    <div class="flow-node bg-energetic-teal/20 border-energetic-teal text-energetic-teal">Target <br>Upsell</div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="flow-node bg-energetic-beige/80 border-energetic-dark-blue text-energetic-dark-blue">Target <br>Cross-sell</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-center text-gray-500 mt-4">This simplified flow shows how decisions are branched based on feature values to guide business actions.</p>
+                </div>
+            </section>
+
+            <!-- Linear Regression -->
+            <section id="linear-regression" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div class="order-2 md:order-1 chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Predicting Output: Hours vs. Score</h3>
+                    <canvas id="linearRegressionScatterChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">The scatter plot shows data points and the best-fit line found by Linear Regression, illustrating the linear relationship used for predictions.</p>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">Linear Regression</h2>
+                    <p class="mb-4">The simplest form of regression, it models the linear relationship between a dependent continuous variable and one or more independent variables by finding the "line of best fit" (often via Ordinary Least Squares).</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Straightforward Interpretation:</span> Coefficients clearly show the magnitude and direction of the relationship between variables, making it easy to understand "if X increases by 1, Y changes by Z."</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Computationally Inexpensive:</span> Fast to train and scale, even with large datasets, making it suitable for quick analyses.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Continuous Output Prediction:</span> Ideal for forecasting numerical values such as sales, prices, or performance scores.</li>
+                        <li class="feature-item"><span class="feature-icon">⚠</span> <span class="font-semibold text-energetic-red">Linearity Assumption:</span> Assumes a linear relationship; performs poorly on non-linear data. Sensitive to outliers.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Loan Approval Systems (Risk Score):** Predicting a numerical risk score for loan applicants based on financial history.</li>
+                        <li>**Employee Performance Prediction:** Forecasting an employee's future performance score based on training hours, experience, or other quantifiable factors.</li>
+                        <li>**Process Optimization in Manufacturing:** Predicting production output or defect rates based on controllable process parameters.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- K-Nearest Neighbors (KNN) -->
+            <section id="knn" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">K-Nearest Neighbors (KNN)</h2>
+                    <p class="mb-4">A non-parametric, "lazy learning" algorithm that classifies a new data point based on the majority class (or average value) among its 'k' closest neighbors in the feature space. No explicit training phase.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Simple to Understand & Implement:</span> Its core logic is based on distance, making it intuitive and easy to grasp.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">No Explicit Training Phase:</span> All computation happens at prediction time ("lazy learning"), as it simply stores the entire dataset.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Effective for Clear Patterns:</span> Works well for small to medium datasets where distinct patterns exist and computational efficiency is not the primary concern.</li>
+                        <li class="feature-item"><span class="feature-icon">⚠</span> <span class="font-semibold text-energetic-red">Sensitive to K Value & Scale:</span> Performance is highly dependent on the choice of 'k' and feature scaling; can be slow on large datasets.</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Recommender Systems:** Suggesting products or content to users based on the preferences of similar users (collaborative filtering).</li>
+                        <li>**Customer Behavior Classification:** Grouping new customers into existing behavioral segments (e.g., high-value, at-risk) based on their attributes.</li>
+                        <li>**Image Recognition for Simple Datasets:** Classifying images (e.g., handwritten digits) where local pixel similarities are strong indicators.</li>
+                    </ul>
+                </div>
+                <div class="chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">KNN: Classifying a New Point (K=3)</h3>
+                    <canvas id="knnScatterChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">A new data point (teal star) is classified as 'Class A' because 2 out of its 3 nearest neighbors are from 'Class A'.</p>
+                </div>
+            </section>
+
+            <!-- LightGBM -->
+            <section id="lightgbm" class="bg-white rounded-lg shadow-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+                <div class="order-2 md:order-1 chart-container">
+                    <h3 class="text-center text-lg font-semibold text-energetic-dark-blue mb-2">Training Speed Comparison (Relative)</h3>
+                    <canvas id="lightGBMBarChart"></canvas>
+                    <p class="text-sm text-center text-gray-500 mt-2">LightGBM significantly outperforms other gradient boosting models in training speed, especially crucial for very large datasets and real-time applications.</p>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-bold text-energetic-dark-blue mb-4">LightGBM</h2>
+                    <p class="mb-4">Light Gradient Boosting Machine is a highly efficient, distributed, and high-performance gradient boosting framework based on decision tree algorithms, specifically designed for large datasets.</p>
+                    <ul class="list-none space-y-2">
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Exceptional Speed & Efficiency:</span> Uses novel techniques (Gradient-based One-Side Sampling, Exclusive Feature Bundling) to dramatically speed up training and reduce memory consumption.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Handles High-Dimensional Data:</span> Efficiently manages datasets with a large number of features, crucial for complex business problems.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Often Achieves High Accuracy:</span> Competitive with or superior to other boosting algorithms like XGBoost, often with less tuning required.</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> <span class="font-semibold">Leaf-wise Growth:</span> Grows trees by splitting the leaf with the largest loss reduction, leading to faster convergence (compared to level-wise).</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-energetic-teal mt-6 mb-2">Key Business Use Cases:</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li>**Customer Churn Prediction (Large Scale):** Processing millions of customer records to identify churn risk quickly and accurately.</li>
+                        <li>**Credit Scoring for Loan Approvals:** Building fast and accurate credit scoring models for real-time loan application processing.</li>
+                        <li>**Marketing Campaign Optimization:** Rapidly analyzing vast amounts of marketing data to personalize offers and optimize campaign performance.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">&copy; 2025 Deep Research. All rights reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">This infographic provides general insights. Specific model performance varies by dataset and problem. No SVG or Mermaid JS was used. Color Palette: Energetic & Playful.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR = '#374151';
+        const GRID_COLOR = '#E5E7EB';
+        const PALETTE = {
+            darkBlue: '#004369',
+            teal: '#01949A',
+            red: '#DB1F48',
+            beige: '#E5DDC8',
+            lightGray: '#F8F8F8'
+        };
+
+        const chartJsOptions = (customOptions = {}) => ({
+            responsive: true,
+            maintainAspectRatio: false, /* Crucial for responsiveness within fixed-height containers */
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            ...customOptions
+        });
+
+        function wrapLabels(labels, maxWidth) {
+            return labels.map(label => {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine !== '') {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            });
+        }
+        
+        const defaultScales = {
+            x: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR }
+            },
+            y: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR },
+                beginAtZero: true
+            }
+        };
+
+        new Chart(document.getElementById('logisticRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Interpretability', 'Computational Cost (Low)', 'Accuracy (Binary)'],
+                datasets: [{
+                    label: 'Logistic Regression',
+                    data: [9, 8, 7],
+                    backgroundColor: 'rgba(0, 67, 105, 0.2)',
+                    borderColor: PALETTE.darkBlue,
+                    pointBackgroundColor: PALETTE.darkBlue,
+                }]
+            },
+            options: chartJsOptions({
+                 scales: {
+                    r: {
+                        angleLines: { color: GRID_COLOR },
+                        grid: { color: GRID_COLOR },
+                        pointLabels: { font: { size: 12 }, color: FONT_COLOR },
+                        ticks: { backdropColor: PALETTE.lightGray, color: FONT_COLOR, display: false },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: { legend: { display: false } }
+            })
+        });
+
+        new Chart(document.getElementById('randomForestBarChart'), {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['Single Decision Tree', 'Random Forest (Ensemble)'], 16),
+                datasets: [{
+                    label: 'Accuracy %',
+                    data: [82, 90],
+                    backgroundColor: [PALETTE.beige, PALETTE.teal],
+                    borderColor: [PALETTE.beige, PALETTE.teal],
+                    borderWidth: 1
+                }]
+            },
+            options: chartJsOptions({
+                scales: {
+                    x: { ...defaultScales.x },
+                    y: { ...defaultScales.y, suggestedMax: 100 }
+                },
+                plugins: { legend: { display: false } }
+            })
+        });
+
+        new Chart(document.getElementById('xgboostLineChart'), {
+            type: 'line',
+            data: {
+                labels: wrapLabels(['Decision Tree', 'Random Forest', 'Gradient Boosting', 'XGBoost'], 16),
+                datasets: [{
+                    label: 'Relative Performance Score',
+                    data: [60, 75, 85, 95],
+                    borderColor: PALETTE.red,
+                    backgroundColor: PALETTE.red,
+                    tension: 0.3,
+                    fill: false
+                }]
+            },
+            options: chartJsOptions({
+                scales: {
+                    x: { ...defaultScales.x },
+                    y: { ...defaultScales.y, suggestedMin: 0, suggestedMax: 100 }
+                },
+                plugins: { legend: { display: false } },
+                elements: { point: { radius: 5, backgroundColor: PALETTE.darkBlue } }
+            })
+        });
+
+        new Chart(document.getElementById('kmeansScatterChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Cluster A',
+                        data: [{x:10,y:15},{x:12,y:14},{x:11,y:17},{x:13,y:16}],
+                        backgroundColor: PALETTE.darkBlue,
+                        pointRadius: 6
+                    },
+                    {
+                        label: 'Cluster B',
+                        data: [{x:25,y:30},{x:27,y:28},{x:26,y:32},{x:28,y:31}],
+                        backgroundColor: PALETTE.teal,
+                        pointRadius: 6
+                    },
+                    {
+                        label: 'Cluster C',
+                        data: [{x:5,y:5},{x:6,y:4},{x:4,y:6},{x:7,y:5}],
+                        backgroundColor: PALETTE.red,
+                        pointRadius: 6
+                    }
+                ]
+            },
+            options: chartJsOptions({
+                 scales: {
+                    x: { ...defaultScales.x, title: { display: true, text: 'Feature 1' } },
+                    y: { ...defaultScales.y, title: { display: true, text: 'Feature 2' } }
+                }
+            })
+        });
+        
+        new Chart(document.getElementById('linearRegressionScatterChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Actual Data',
+                    data: [
+                        {x: 10, y: 65}, {x: 12, y: 70}, {x: 15, y: 72}, {x: 20, y: 78}, {x: 22, y: 75}, 
+                        {x: 25, y: 85}, {x: 30, y: 88}, {x: 35, y: 92}, {x: 40, y: 95}, {x: 42, y: 94}
+                    ],
+                    backgroundColor: PALETTE.teal,
+                },
+                {
+                    label: 'Regression Line',
+                    data: [{x: 10, y: 68}, {x: 42, y: 93}],
+                    type: 'line',
+                    borderColor: PALETTE.red,
+                    backgroundColor: PALETTE.red,
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 2,
+                }]
+            },
+            options: chartJsOptions({
+                 scales: {
+                    x: { ...defaultScales.x, title: { display: true, text: 'Input Variable (e.g., Hours)' }, suggestedMin: 0 },
+                    y: { ...defaultScales.y, title: { display: true, text: 'Output Variable (e.g., Score)' }, suggestedMin: 50 }
+                }
+            })
+        });
+
+        new Chart(document.getElementById('knnScatterChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Class A',
+                        data: [{x:2,y:3},{x:3,y:2},{x:4,y:3},{x:3,y:4}],
+                        backgroundColor: PALETTE.darkBlue,
+                        pointRadius: 6
+                    },
+                    {
+                        label: 'Class B',
+                        data: [{x:7,y:8},{x:8,y:7},{x:9,y:8},{x:8,y:9}],
+                        backgroundColor: PALETTE.red,
+                        pointRadius: 6
+                    },
+                    {
+                        label: 'New Point (K=3)',
+                        data: [{x:5.5,y:5.5}],
+                        backgroundColor: PALETTE.teal,
+                        pointStyle: 'star',
+                        radius: 10,
+                        borderColor: PALETTE.teal,
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: chartJsOptions({
+                 scales: {
+                    x: { ...defaultScales.x, title: { display: true, text: 'Feature X' } },
+                    y: { ...defaultScales.y, title: { display: true, text: 'Feature Y' } }
+                }
+            })
+        });
+
+        new Chart(document.getElementById('lightGBMBarChart'), {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['XGBoost', 'LightGBM', 'Other GB Models'], 16),
+                datasets: [{
+                    label: 'Relative Training Time',
+                    data: [100, 40, 120],
+                    backgroundColor: [PALETTE.darkBlue, PALETTE.red, PALETTE.beige],
+                    borderColor: [PALETTE.darkBlue, PALETTE.red, PALETTE.beige],
+                    borderWidth: 1
+                }]
+            },
+            options: chartJsOptions({
+                indexAxis: 'y',
+                scales: {
+                    x: { ...defaultScales.x, suggestedMax: 150 },
+                    y: { ...defaultScales.y }
+                },
+                plugins: { legend: { display: false } }
+            })
+        });
+    </script>
+</body>
+</html>

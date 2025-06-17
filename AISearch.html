@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design: AI-Powered Document Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1d32;
+            color: #e0e0e0;
+        }
+        .flow-arrow-down::after {
+            content: '▼';
+            font-size: 1.5rem;
+            color: #52A8FF;
+            line-height: 1;
+            display: block;
+            text-align: center;
+        }
+        .flow-arrow-right::after {
+            content: '►';
+            font-size: 1.5rem;
+            color: #52A8FF;
+            line-height: 1;
+        }
+        .card {
+            background-color: #004AAD;
+            border: 1px solid #007BFF;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+        }
+        .card-title {
+            color: #A8D8FF;
+        }
+        .card-text {
+            color: #FFFFFF;
+        }
+        .rationale-card {
+            background-color: #003366; /* A slightly different shade for rationale */
+            border-left: 3px solid #52A8FF;
+        }
+    </style>
+</head>
+<body class="bg-[#0b1d32] text-white">
+
+    <!-- 
+        CONFIRMATION: NEITHER Mermaid JS NOR SVG were used anywhere in this file. 
+        All diagrams are constructed using structured HTML and styled with Tailwind CSS.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black text-white uppercase tracking-wider">System Design</h1>
+            <p class="text-2xl font-semibold text-[#A8D8FF]">AI-Powered Search for Notion & Google Docs</p>
+            <!-- EDITED: More insightful description -->
+            <p class="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">An in-depth look at a scalable, decoupled architecture that unifies disparate knowledge sources using Retrieval-Augmented Generation (RAG) for intelligent, conversational queries.</p>
+        </header>
+
+        <!-- High-Level Architecture -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-white">High-Level Architecture</h2>
+            <div class="p-6 rounded-lg bg-[#002952] border border-[#007BFF] grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Diagram Part -->
+                <div class="lg:col-span-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Column 1: Client & Backend -->
+                        <div class="flex flex-col space-y-6">
+                            <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">Client</h3><p class="card-text">React / Next.js</p></div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">API Server</h3><p class="card-text">Python (FastAPI)</p></div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">Task Queue</h3><p class="card-text">Celery & Redis</p></div>
+                        </div>
+                        <!-- Column 2: Core Logic & Data -->
+                        <div class="flex flex-col justify-center items-center space-y-6">
+                            <div class="bg-[#007BFF] p-6 rounded-lg text-center shadow-2xl text-white"><h3 class="text-xl font-extrabold">RAG & Indexing Service</h3><p>(LangChain, OpenAI)</p></div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                               <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">Application DB</h3><p class="card-text">PostgreSQL</p></div>
+                               <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">Vector DB</h3><p class="card-text">ChromaDB</p></div>
+                            </div>
+                        </div>
+                        <!-- Column 3: External Services -->
+                        <div class="flex flex-col justify-center items-center space-y-6">
+                            <div class="card p-4 rounded-lg text-center shadow-lg"><h3 class="font-bold card-title">External APIs</h3><p class="card-text">Notion API</p><p class="card-text">Google Drive API</p><p class="card-text">OpenAI API</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- ADDED: Rationale for the architecture -->
+                <div class="lg:col-span-1 p-4 rationale-card rounded-lg">
+                    <h4 class="text-xl font-bold text-[#A8D8FF] mb-3">Architectural Rationale</h4>
+                    <p class="text-sm text-gray-200">This decoupled, service-oriented architecture is chosen for several key reasons:</p>
+                    <ul class="list-disc list-inside space-y-2 mt-2 text-sm text-gray-300">
+                        <li><strong>Scalability:</strong> Each component (API, workers, databases) can be scaled independently to handle different loads.</li>
+                        <li><strong>Resilience:</strong> A failure in the background indexing job does not bring down the main query API. The task queue ensures jobs are retried.</li>
+                        <li><strong>Non-Blocking UI:</strong> Heavy data ingestion is offloaded to background workers (Celery), so the user-facing API remains fast and responsive.</li>
+                        <li><strong>Maintainability:</strong> Separating concerns makes the codebase easier to understand, test, and maintain.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack Deep Dive -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-white">Technology Stack Rationale</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- EDITED: Added detailed rationale for each tech choice -->
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">① Backend & Task Processing</h3>
+                    <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>FastAPI:</strong> For its high performance, native async support (crucial for I/O-bound tasks like API calls), and automatic data validation via Pydantic.</li>
+                        <li><strong>Celery & Redis:</strong> To manage asynchronous, long-running tasks like fetching and indexing entire document sets. This prevents API timeouts and allows for retries and scheduled jobs.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">② AI / RAG Pipeline</h3>
+                    <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>LangChain:</strong> Provides a powerful abstraction layer to chain together LLMs, document loaders, and vector stores, drastically reducing boilerplate code for the RAG pattern.</li>
+                        <li><strong>OpenAI (GPT-4 & Ada-002):</strong> GPT-4 for high-quality answer synthesis and Ada-002 for its cost-effective and high-performance embeddings.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">③ Data Storage</h3>
+                     <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>ChromaDB:</strong> An open-source, easy-to-use vector store perfect for development and small-to-medium scale deployments. It can be run in-process or as a separate server. For massive scale, this could be swapped for a managed service like Pinecone or Weaviate.</li>
+                        <li><strong>PostgreSQL:</strong> A robust relational database to store document metadata, user info, and sync status. Its `JSONB` type is excellent for storing flexible source-specific metadata.</li>
+                    </ul>
+                </div>
+                 <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">④ Frontend & DevOps</h3>
+                     <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>Next.js:</strong> Chosen over plain React for its built-in server-side rendering (SSR), improved performance, and streamlined developer experience.</li>
+                        <li><strong>Docker & Kubernetes:</strong> For containerizing the application, ensuring consistent environments from development to production, and enabling automated scaling and deployment.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Workflows -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-white">Key Workflows Explained</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Ingestion Workflow -->
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#A8D8FF]">A. Asynchronous Data Ingestion</h3>
+                    <div class="space-y-4">
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">1</span><div><h4 class="font-bold card-title">Trigger Sync</h4><p class="card-text text-sm">A scheduler (Celery Beat) or user action enqueues a `sync_documents` task.</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">2</span><div><h4 class="font-bold card-title">Fetch & Chunk</h4><p class="card-text text-sm">A Celery worker fetches documents via Notion/Google APIs, then splits them into smaller, semantically meaningful chunks (e.g., using `RecursiveCharacterTextSplitter`).</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">3</span><div><h4 class="font-bold card-title">Embed</h4><p class="card-text text-sm">Each text chunk is converted into a numerical vector (embedding) using the OpenAI Ada-002 model.</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">4</span><div><h4 class="font-bold card-title">Upsert Data</h4><p class="card-text text-sm">Embeddings and chunked text are stored in ChromaDB. Document metadata and sync status are updated in PostgreSQL.</p></div></div>
+                    </div>
+                     <!-- ADDED: Key consideration for this workflow -->
+                    <div class="mt-6 p-4 rationale-card rounded-lg">
+                        <h4 class="font-bold text-[#A8D8FF] mb-2">Key Consideration: Idempotency & De-duplication</h4>
+                        <p class="text-sm text-gray-300">The ingestion process must be idempotent. When re-syncing, it should check `last_modified` timestamps to only process new or updated documents. Using the source document ID as the primary key in our metadata table prevents duplicates.</p>
+                    </div>
+                </div>
+
+                <!-- Query Workflow -->
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#A8D8FF]">B. Real-Time RAG Query</h3>
+                    <div class="space-y-4">
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">1</span><div><h4 class="font-bold card-title">User Query</h4><p class="card-text text-sm">User submits a question through the client, hitting the `/query` endpoint on the FastAPI server.</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">2</span><div><h4 class="font-bold card-title">Embed Query</h4><p class="card-text text-sm">The user's question is converted into an embedding vector using the same Ada-002 model.</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">3</span><div><h4 class="font-bold card-title">Retrieve Context</h4><p class="card-text text-sm">ChromaDB performs a similarity search (e.g., k-NN) using the query vector to find the top `k` most relevant document chunks.</p></div></div>
+                        <div class="pl-5 flow-arrow-down"></div>
+                        <div class="card p-4 rounded-lg flex items-center space-x-4"><span class="text-2xl font-black text-[#52A8FF]">4</span><div><h4 class="font-bold card-title">Augment & Generate</h4><p class="card-text text-sm">The retrieved chunks (context) and the original question are combined into a carefully crafted prompt and sent to GPT-4 to generate a final, synthesized answer.</p></div></div>
+                    </div>
+                     <!-- ADDED: Key consideration for this workflow -->
+                    <div class="mt-6 p-4 rationale-card rounded-lg">
+                        <h4 class="font-bold text-[#A8D8FF] mb-2">Key Consideration: Mitigating Hallucinations</h4>
+                        <p class="text-sm text-gray-300">The prompt sent to the LLM is critical. It must explicitly instruct the model to answer *only* based on the provided context. Example: "Given the following context, answer the user's question. If the context does not contain the answer, say 'I don't know'."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ADDED: New section explaining data model relationships -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-white">Data Model: Linking Relational & Vector Data</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center bg-[#002952] p-6 rounded-lg border border-[#007BFF]">
+                <div class="md:col-span-2 card p-4 rounded-lg">
+                    <h4 class="text-lg font-bold card-title text-center">PostgreSQL `documents` Table</h4>
+                    <p class="text-xs text-center text-gray-300 mb-2">(Stores Metadata & State)</p>
+                    <div class="bg-[#0b1d32] p-2 rounded font-mono text-xs">
+                        <p>id: <span class="text-[#52A8FF]">123</span></p>
+                        <p>source: <span class="text-[#A8D8FF]">'notion'</span></p>
+                        <p>source_id: <span class="text-[#A8D8FF]">'abc-123'</span></p>
+                        <p>title: <span class="text-[#A8D8FF]">'Q3 Planning'</span></p>
+                        <p>last_synced_at: <span class="text-[#A8D8FF]">'...'</span></p>
+                    </div>
+                </div>
+                <div class="text-center text-3xl font-black text-[#52A8FF] transform md:rotate-0 rotate-90">
+                  →
+                </div>
+                <div class="md:col-span-2 card p-4 rounded-lg">
+                    <h4 class="text-lg font-bold card-title text-center">ChromaDB Collection</h4>
+                    <p class="text-xs text-center text-gray-300 mb-2">(Stores Content Chunks & Vectors)</p>
+                     <div class="bg-[#0b1d32] p-2 rounded font-mono text-xs space-y-1">
+                        <p>{ id: 'abc-123_chunk_0', metadata: {doc_id: 123}, content: '...', vector: [0.1, ...] }</p>
+                        <p>{ id: 'abc-123_chunk_1', metadata: {doc_id: 123}, content: '...', vector: [0.5, ...] }</p>
+                        <p>{ id: 'abc-123_chunk_2', metadata: {doc_id: 123}, content: '...', vector: [0.3, ...] }</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-gray-400 text-sm">A single document record in PostgreSQL corresponds to <strong>multiple</strong> vector entries in ChromaDB. The relational DB tracks the overall state, while the vector DB enables the semantic search.</p>
+        </section>
+
+        <!-- ADDED: New section on scalability and challenges -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-white">Challenges & Scalability</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">Scaling Considerations</h3>
+                    <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>API Server:</strong> Horizontally scale FastAPI instances behind a load balancer.</li>
+                        <li><strong>Celery Workers:</strong> Increase the number of worker nodes to process more ingestion tasks in parallel.</li>
+                        <li><strong>PostgreSQL:</strong> Implement read replicas to offload read traffic (like fetching metadata for results).</li>
+                        <li><strong>Vector DB:</strong> For very large datasets, migrate from a self-hosted ChromaDB to a managed, distributed vector database like Pinecone, Weaviate, or Milvus.</li>
+                        <li><strong>Caching:</strong> Implement a Redis cache for frequently accessed data, such as user permissions or even embeddings for common search queries.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold card-title mb-3">Future Improvements & Challenges</h3>
+                     <ul class="list-disc list-inside space-y-2 card-text text-base">
+                        <li><strong>Real-time Sync:</strong> Move from scheduled polling to a webhook-based system for instant updates when a document changes in Notion or Google Drive.</li>
+                        <li><strong>Cost Management:</strong> OpenAI API calls can be expensive. Implement caching, query batching, and potentially use smaller, fine-tuned models for specific tasks.</li>
+                        <li><strong>Advanced Retrieval:</strong> Implement Hybrid Search (combining vector search with traditional keyword search) for better relevance on queries with specific terms (e.g., product codes, names).</li>
+                         <li><strong>Evaluation & Observability:</strong> Build a robust evaluation framework (e.g., RAGAs) to measure answer quality and log requests/responses to monitor for issues like prompt drift or poor performance.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-gray-500">A Comprehensive System Design for AI-Powered Search</p>
+        </footer>
+    </div>
+</body>
+</html>

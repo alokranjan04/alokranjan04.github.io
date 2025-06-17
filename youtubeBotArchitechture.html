@@ -1,0 +1,447 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="3" dy="3" stdDeviation="5" flood-color="#00000030"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="900" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="700" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1e293b">
+    YouTube Video Q&A Bot - RAG Architecture
+  </text>
+  
+  <!-- Input Layer -->
+  <rect x="50" y="70" width="200" height="140" rx="12" fill="url(#redGradient)" filter="url(#shadow)"/>
+  <text x="150" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Video Input
+  </text>
+  <text x="150" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    YouTube URL/ID
+  </text>
+  <text x="150" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Video URL parsing
+  </text>
+  <text x="150" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • ID extraction
+  </text>
+  <text x="150" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Validation
+  </text>
+  <text x="150" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Metadata fetch
+  </text>
+  <text x="150" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Duration check
+  </text>
+  
+  <!-- YouTube API Layer -->
+  <rect x="300" y="70" width="220" height="140" rx="12" fill="url(#redGradient)" filter="url(#shadow)"/>
+  <text x="410" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    YouTube Data API v3
+  </text>
+  <text x="410" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Video Information
+  </text>
+  <text x="410" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Video metadata
+  </text>
+  <text x="410" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Title, description
+  </text>
+  <text x="410" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Channel info
+  </text>
+  <text x="410" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Duration, views
+  </text>
+  <text x="410" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Captions availability
+  </text>
+  
+  <!-- Transcript Extraction -->
+  <rect x="570" y="70" width="220" height="140" rx="12" fill="url(#greenGradient)" filter="url(#shadow)"/>
+  <text x="680" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Transcript Extraction
+  </text>
+  <text x="680" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    youtube-transcript-api
+  </text>
+  <text x="680" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Auto-generated captions
+  </text>
+  <text x="680" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Manual captions
+  </text>
+  <text x="680" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp mapping
+  </text>
+  <text x="680" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Text cleaning
+  </text>
+  <text x="680" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Format standardization
+  </text>
+  
+  <!-- Preprocessing Layer -->
+  <rect x="840" y="70" width="220" height="140" rx="12" fill="url(#greenGradient)" filter="url(#shadow)"/>
+  <text x="950" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Text Preprocessing
+  </text>
+  <text x="950" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    LangChain TextSplitter
+  </text>
+  <text x="950" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Noise removal
+  </text>
+  <text x="950" y="150" text-anchor="middle" font-family="Arabic, sans-serif" font-size="10" fill="white">
+    • Sentence segmentation
+  </text>
+  <text x="950" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chunk with timestamps
+  </text>
+  <text x="950" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context preservation
+  </text>
+  <text x="950" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Speaker identification
+  </text>
+  
+  <!-- Summarization Engine -->
+  <rect x="1110" y="70" width="220" height="140" rx="12" fill="url(#orangeGradient)" filter="url(#shadow)"/>
+  <text x="1220" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Summarization Engine
+  </text>
+  <text x="1220" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    OpenAI GPT-4
+  </text>
+  <text x="1220" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Extractive summary
+  </text>
+  <text x="1220" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Abstractive summary
+  </text>
+  <text x="1220" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Key points
+  </text>
+  <text x="1220" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Topic identification
+  </text>
+  <text x="1220" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timeline highlights
+  </text>
+  
+  <!-- Embeddings Layer -->
+  <rect x="300" y="250" width="220" height="120" rx="12" fill="url(#purpleGradient)" filter="url(#shadow)"/>
+  <text x="410" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Text Embeddings
+  </text>
+  <text x="410" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    OpenAI Embeddings
+  </text>
+  <text x="410" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • text-embedding-ada-002
+  </text>
+  <text x="410" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • 1536 dimensions
+  </text>
+  <text x="410" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Semantic similarity
+  </text>
+  <text x="410" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp preservation
+  </text>
+  
+  <!-- Vector Store -->
+  <rect x="570" y="250" width="220" height="120" rx="12" fill="url(#purpleGradient)" filter="url(#shadow)"/>
+  <text x="680" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Vector Database
+  </text>
+  <text x="680" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    FAISS / Chroma
+  </text>
+  <text x="680" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Vector indexing
+  </text>
+  <text x="680" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Similarity search
+  </text>
+  <text x="680" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Metadata filtering
+  </text>
+  <text x="680" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp indexing
+  </text>
+  
+  <!-- Query Processing -->
+  <rect x="840" y="250" width="220" height="120" rx="12" fill="url(#tealGradient)" filter="url(#shadow)"/>
+  <text x="950" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Query Processing
+  </text>
+  <text x="950" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Smart Retrieval
+  </text>
+  <text x="950" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Query understanding
+  </text>
+  <text x="950" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context retrieval
+  </text>
+  <text x="950" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp filtering
+  </text>
+  <text x="950" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Relevance scoring
+  </text>
+  
+  <!-- LLM Response Generation -->
+  <rect x="1110" y="250" width="220" height="120" rx="12" fill="url(#orangeGradient)" filter="url(#shadow)"/>
+  <text x="1220" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Response Generation
+  </text>
+  <text x="1220" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    OpenAI GPT-4
+  </text>
+  <text x="1220" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context-aware answers
+  </text>
+  <text x="1220" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp citations
+  </text>
+  <text x="1220" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Follow-up handling
+  </text>
+  <text x="1220" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Source attribution
+  </text>
+  
+  <!-- Memory & Chat History -->
+  <rect x="300" y="410" width="220" height="100" rx="12" fill="#64748b" filter="url(#shadow)"/>
+  <text x="410" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Conversation Memory
+  </text>
+  <text x="410" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    ConversationBufferMemory
+  </text>
+  <text x="410" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chat history
+  </text>
+  <text x="410" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context continuity
+  </text>
+  <text x="410" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Session management
+  </text>
+  
+  <!-- RAG Chain -->
+  <rect x="570" y="410" width="220" height="100" rx="12" fill="#64748b" filter="url(#shadow)"/>
+  <text x="680" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    RAG Chain
+  </text>
+  <text x="680" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    ConversationalRetrievalChain
+  </text>
+  <text x="680" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Retrieval + Generation
+  </text>
+  <text x="680" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Context management
+  </text>
+  <text x="680" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Answer synthesis</text>
+  
+  <!-- UI Layer -->
+  <rect x="50" y="250" width="200" height="260" rx="12" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <text x="150" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    User Interface
+  </text>
+  <text x="150" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Streamlit Dashboard
+  </text>
+  <text x="150" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">
+    Features:
+  </text>
+  <text x="150" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • URL input field
+  </text>
+  <text x="150" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Video player embed
+  </text>
+  <text x="150" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Chat interface
+  </text>
+  <text x="150" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Auto-summary display
+  </text>
+  <text x="150" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Timestamp links
+  </text>
+  <text x="150" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Progress indicators
+  </text>
+  <text x="150" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Export options
+  </text>
+  <text x="150" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Multi-video support
+  </text>
+  <text x="150" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Search history
+  </text>
+  <text x="150" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Response ratings
+  </text>
+  <text x="150" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Download transcripts
+  </text>
+  <text x="150" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Sharing capabilities
+  </text>
+  
+  <!-- Cache Layer -->
+  <rect x="840" y="410" width="220" height="100" rx="12" fill="#475569" filter="url(#shadow)"/>
+  <text x="950" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">
+    Caching Layer
+  </text>
+  <text x="950" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Redis / File Cache
+  </text>
+  <text x="950" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Transcript caching
+  </text>
+  <text x="950" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • Embedding caching
+  </text>
+  <text x="950" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    • API response cache
+  </text>
+  
+  <!-- Data Flow Arrows -->
+  <!-- Input to YouTube API -->
+  <path d="M 250 140 L 300 140" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- YouTube API to Transcript -->
+  <path d="M 520 140 L 570 140" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Transcript to Preprocessing -->
+  <path d="M 790 140 L 840 140" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Preprocessing to Summarization -->
+  <path d="M 1060 140 L 1110 140" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Preprocessing to Embeddings -->
+  <path d="M 950 210 L 410 250" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Embeddings to Vector Store -->
+  <path d="M 520 310 L 570 310" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- UI to Query Processing -->
+  <path d="M 250 350 L 840 320" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Vector Store to Query Processing -->
+  <path d="M 790 310 L 840 310" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Query Processing to Response Generation -->
+  <path d="M 1060 310 L 1110 310" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Response back to UI -->
+  <path d="M 1110 300 Q 700 600 150 510" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Memory connections -->
+  <path d="M 520 460 L 570 460" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 790 460 L 950 380" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Cache connections -->
+  <path d="M 840 450 L 680 370" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  <path d="M 950 410 L 950 370" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  
+  <!-- Flow Labels -->
+  <text x="275" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">URL</text>
+  <text x="545" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Metadata</text>
+  <text x="815" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Transcript</text>
+  <text x="1085" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Process</text>
+  <text x="465" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Chunks</text>
+  <text x="545" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Embed</text>
+  <text x="540" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Query</text>
+  <text x="815" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Retrieve</text>
+  <text x="1085" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Generate</text>
+  <text x="700" y="620" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">Response</text>
+  
+  <!-- Technology Stack -->
+  <rect x="50" y="550" width="350" height="280" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="225" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b">
+    Technology Stack
+  </text>
+  
+  <!-- APIs & Services -->
+  <rect x="70" y="590" width="150" height="70" rx="8" fill="#fef2f2"/>
+  <text x="145" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#dc2626">
+    APIs & Services
+  </text>
+  <text x="145" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#dc2626">
+    • YouTube Data API v3
+  </text>
+  <text x="145" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#dc2626">
+    • youtube-transcript-api
+  </text>
+  <text x="145" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#dc2626">
+    • OpenAI API
+  </text>
+  
+  <!-- Backend -->
+  <rect x="240" y="590" width="140" height="70" rx="8" fill="#ecfdf5"/>
+  <text x="310" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">
+    Backend
+  </text>
+  <text x="310" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">
+    • Python 3.9+
+  </text>
+  <text x="310" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">
+    • LangChain
+  </text>
+  <text x="310" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">
+    • FastAPI/Flask
+  </text>
+  
+  <!-- Frontend -->
+  <rect x="70" y="680" width="150" height="70" rx="8" fill="#eff6ff"/>
+  <text x="145" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d4ed8">
+    Frontend
+  </text>
+  <text x="145" y="715" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1d4ed8">
+    • Streamlit
+  </text>
+  <text x="145" y="730" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1d4ed8">
+    • HTML/CSS/JS
+  </text>
+  <text x="145" y="745" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1d4ed8">
+    • React (optional)
